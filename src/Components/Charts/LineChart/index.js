@@ -16,17 +16,14 @@ const generateOptions = (data) => {
       categories: categories,
       crosshair: true,
     },
-    colors: ["#F3585B"],
+    colors: ["#F3585B"], //color line chart
     yAxis: {
       min: 0,
       title: {
         text: null,
       },
-      labels: {
-        align: "right",
-      },
     },
-    tooltip: {
+    tooltip: { //customize lại nội dung hiển thị trên đường chart
       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
       pointFormat:
         '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
@@ -41,27 +38,31 @@ const generateOptions = (data) => {
         borderWidth: 0,
       },
     },
-    series: [
+    series: [ //data truyền vào để hiển thị trên lineChart  
       {
         name: "Tổng Ca nhiễm",
-        data: data.map((item) => item.Confirmed),
+        data: data.map((item) => item.Confirmed), //data được lấy vào dựa vào parameter (tham số)
       },
     ],
   };
 };
 
-export default function LineChart({data}) {
+
+const LineChart = ({data})  => { //khi data thay đổi thì cần cập nhật lại generateOptions
   const [options, setOptions] = useState({});
+
   useEffect(() => {
     setOptions(generateOptions(data));
-  }, [data]);
-
+  }, [data]); // khi data thay đổi thì useEffect sẽ được thực thi lại
+ 
   return (
     <div>
       <HighchartsReact 
         highchart={Highchart} 
-        options={options} 
+        options={options} // xét giá trị state này vào option để highchart có thể hiển thị
       />
     </div>
   );
 }
+
+export default LineChart

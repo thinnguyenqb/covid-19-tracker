@@ -5,35 +5,43 @@ import Highlight from './Components/Highlight'
 import Summary from './Components/Summary'
 
 function App() {
-  const [countries, setCountries] = useState([])
+  const [countries, setCountries] = useState([]);
+  const [selectedCountryId, setSelectedCountryId] = useState('');
+  const [report, setReport] = useState([]);
 
   useEffect(() => { //nhận 2 tham số
     getCountries().then((res) => { //dùng then để lấy dữ liệu trả về từ api
-      console.log({res});
       setCountries(res.data)
+      setSelectedCountryId('vn')
     });
   }, [])//tham số thứ 2 là 1 empty array 
 
   const handleOnChange = (e) => {
-    console.log({e});
-    const { Slug } = countries.find(
-      (country) => country.ISO2.toLowerCase() === e.target.value
-    );
-    
-    console.log({e, Slug});
-    //call api
-    getReportByCountry(Slug).then(res => 
-      console.log('getReportByCountry', { res })
-    )
+    setSelectedCountryId(e.target.value)
   }
 
-  return (
-    <div>
-      <CountrySelector countries={countries} handleOnChange={handleOnChange}/>
-      <Highlight />
-      <Summary />
+  useEffect(() => {
+    if (selectedCountryId) {
+      const { Slug } = countries.find(
+        (country) => country.ISO2.toLowerCase() === selectedCountryId
+      );
+      console.log("Slug", Slug)
+      //call api
+      getReportByCountry(Slug).then((res) => {
+        //xóa đi item cuối cùng trong array res.data
+        console.log(res.data);
+        res.data.pop();
+        setReport(res.data)   
+      }) 
+    }
+  },[countries, selectedCountryId])
 
-    </div>
+  return (
+    <>
+      <CountrySelector countries={countries} handleOnChange={handleOnChange} value={selectedCountryId}/>
+      <Highlight report={report}/>
+      <Summary report={report}/>
+    </>
   );
 }
 
