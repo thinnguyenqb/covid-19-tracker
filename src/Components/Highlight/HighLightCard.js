@@ -22,7 +22,7 @@ const HighLightCart = ({ title, count, type }) => {
   return (
     <Card className={styles.wrapper}>
       <CardContent>
-        <Typography component="p" variant="body2" classname={styles.title}>
+        <Typography component="p" variant="body2" className={styles.title}>
           { title }
         </Typography>
         <Typography component="span" variant="body2" className={styles.count}>

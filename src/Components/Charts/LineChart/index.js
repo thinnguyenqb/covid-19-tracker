@@ -1,6 +1,6 @@
-import HighchartsReact from "highcharts-react-official";
-import Highchart from "highcharts";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from 'react';
+import Highchart from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 const generateOptions = (data) => {
   const categories = [];
@@ -16,14 +16,13 @@ const generateOptions = (data) => {
       categories: categories,
       crosshair: true,
     },
-    colors: ["#F3585B"], //color line chart
     yAxis: {
       min: 0,
       title: {
         text: null,
       },
     },
-    tooltip: { //customize lại nội dung hiển thị trên đường chart
+    tooltip: { 
       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
       pointFormat:
         '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
@@ -38,17 +37,18 @@ const generateOptions = (data) => {
         borderWidth: 0,
       },
     },
-    series: [ //data truyền vào để hiển thị trên lineChart  
+    series: [ 
       {
         name: "Tổng Ca nhiễm",
-        data: data.map((item) => item.Confirmed), //data được lấy vào dựa vào parameter (tham số)
+        data: data.map((item) => item.Confirmed), 
       },
     ],
   };
 };
 
 
-const LineChart = ({data})  => { //khi data thay đổi thì cần cập nhật lại generateOptions
+const LineChart = ({data})  => { 
+  console.log('LineChart', {data})
   const [options, setOptions] = useState({});
 
   useEffect(() => {
@@ -57,9 +57,9 @@ const LineChart = ({data})  => { //khi data thay đổi thì cần cập nhật 
  
   return (
     <div>
-      <HighchartsReact 
-        highchart={Highchart} 
-        options={options} // xét giá trị state này vào option để highchart có thể hiển thị
+      <HighchartsReact
+        highcharts={Highchart}
+        options={options}
       />
     </div>
   );
