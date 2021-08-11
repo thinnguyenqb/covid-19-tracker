@@ -19,7 +19,7 @@ export default function Summary({ report, countryId }) {
   }, [countryId]);
 
   return (
-    <div>
+    <div style={{marginTop: "10px" }}>
       <Grid container spacing={3}>
         <Grid item sm={8} xs={12}>
           <LineChart data={report} />
