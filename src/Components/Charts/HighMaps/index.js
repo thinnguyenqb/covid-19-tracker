@@ -91,4 +91,4 @@ HighMaps.defaultProps = {
   mapData: {},
 };
 
-export default HighMaps;
+export default  React.memo(HighMaps);

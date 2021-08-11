@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, Typography, makeStyles } from "@material-ui/core";
+import CountUp from 'react-countup'
 
 const useStyles = makeStyles({
   wrapper: (props) => {
@@ -26,11 +27,11 @@ const HighLightCart = ({ title, count, type }) => {
           { title }
         </Typography>
         <Typography component="span" variant="body2" className={styles.count}>
-          { count }
+          <CountUp end={count || 0} duration={2} separator='.'/>
         </Typography>
       </CardContent>
     </Card>
   );
 };
 
-export default HighLightCart;
+export default React.memo(HighLightCart);
