@@ -25,11 +25,9 @@ function App() {
       const { Slug } = countries.find(
         (country) => country.ISO2.toLowerCase() === selectedCountryId
       );
-      console.log("Slug", Slug)
       //call api
       getReportByCountry(Slug).then((res) => {
         //xóa đi item cuối cùng trong array res.data
-        console.log(res.data);
         res.data.pop();
         setReport(res.data)   
       }) 
@@ -40,7 +38,7 @@ function App() {
     <>
       <CountrySelector countries={countries} handleOnChange={handleOnChange} value={selectedCountryId}/>
       <Highlight report={report}/>
-      <Summary report={report}/>
+      <Summary report={report} countryId={selectedCountryId}/>
     </>
   );
 }
