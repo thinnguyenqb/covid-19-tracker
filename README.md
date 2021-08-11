@@ -16,3 +16,5 @@ https://www.npmjs.com/package/react-countup
 https://www.npmjs.com/package/lodash
 
 - React.memo: là một phương pháp được sử dụng như là một tiện ích cho việc tối ưu hoá hiệu suất ứng dụng (performance optimization). 
+
+![img](https://res.cloudinary.com/ericnguyen-cop/image/upload/v1628700126/github/o6noyfkh0acdvsmvrqq9.png)
