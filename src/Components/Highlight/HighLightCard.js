@@ -4,15 +4,15 @@ import CountUp from 'react-countup'
 
 const useStyles = makeStyles({
   wrapper: (props) => {
-    if (props.type === 'confirmed') return { borderLeft: "5px solid #c9302c" };
-    if (props.type === 'recovered') return { borderLeft: "5px solid #28a745" };
-    else return { borderLeft: "5px solid gray"}
+    if (props.type === 'confirmed') return { borderLeft: "5px solid #c9302c", background: "#ff4d4f"};
+    if (props.type === 'recovered') return { borderLeft: "5px solid #28a745", background: "#73d13d" };
+    else return { borderLeft: "5px solid gray", background: "#bfbfbf"}
   },
   title: {
     fontSize: 18,
     marginBottom: 5
   },
-  count: {
+  count: {  
     fontSize: 18,
     fontWeight: 'bold'
   }

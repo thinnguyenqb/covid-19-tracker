@@ -11,8 +11,6 @@ import 'moment/locale/vi';
 
 moment.locale('vi');
 
-
-
 function App() {
   const [countries, setCountries] = useState([]);
   const [selectedCountryId, setSelectedCountryId] = useState('');
